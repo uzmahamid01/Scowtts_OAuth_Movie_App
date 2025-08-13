@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Auth Movie Facts App
+
+A web application that allows users to authenticate with Google, select their favorite movie, and discover interesting facts about that movie. 
+
+## Features
+
+- **Google Authentication**: Secure login using Google OAuth
+- **Favorite Movie Selection**: Choose from a curated list of popular movies
+- **Movie Facts Dashboard**: Discover interesting facts about movies
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Modern UI**: Clean, professional interface with shadcn/ui components
+
+## Tech Stack
+
+-
 
 ## Getting Started
 
-First, run the development server:
+### Whats needed
+
+- Google Console Cloud Account - For ClientId - For Authentication
+- Database URL - in this case Supabase 
+- Google OAuth credentials
+- LLM API Key - in this case GEMINI API KEY
+
+
+
+### Installation
+
+1. Clone the repository:
+
+2. Install dependencies:
+
+```bash
+npm install
+npm install -D @tailwindcss/postcss
+npx shadcn@latest 
+npm install next-auth @next-auth/prisma-adapter @prisma/client prisma pg
+npx prisma migrate dev --name init    
+````
+
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add your Google OAuth credentials:
+
+```env
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+DATABASE_URL=
+GEMINI_API_KEY=
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+* `app/` — Next.js App Router directory
 
-To learn more about Next.js, take a look at the following resources:
+  * `api/` — API routes for auth and movie fact fetching and NextAuth configuration
+  * `dashboard/` — Protected user dashboard page
+  * `favorite-movie/` — Page for users to set their favorite movie
+  * `login/` — Login page with Google OAuth
+  * `page.tsx` — Main Landing Page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* `.env` — Environment variables
+* `prisma/` — Schema for database 
+* `components/` — Reusable React components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### The Page Flow
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Landing**: Users start at the main page 
+2. **Login**: From Landing page user redirects to the login page and authenticate with Google.
+3. **Movie Selection**: After login, users submit their favorite movie. 
+4. **Dashboard**: Users can view their google information, their favorite movie and one interesting fact about the movie. Additionally Logout button which redirects back to the login page.
+
+
+## Features in Detail
+
+### Authentication
+- Secure Google OAuth integration
+- Session management
+- Protected routes
+
+### Movie Selection
+- Form type prompt to ask for users favorite movie
+
+### Dashboard
+- Random movie facts
+- User profile display
+- Clean, card-based layout
+- Logout Button
+
+
+
