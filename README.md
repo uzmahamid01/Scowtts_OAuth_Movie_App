@@ -2,6 +2,8 @@
 
 A web application that allows users to authenticate with Google, select their favorite movie, and discover interesting facts about that movie. 
 
+Read my small brainstorming documentation: [Project Documentation](https://www.notion.so/Scowtt-Take-Home-Assignment-24db3231923b80bfa920e7c1cc516808?source=copy_link)
+
 ## Features
 
 - **Google Authentication**: Secure login using Google OAuth
